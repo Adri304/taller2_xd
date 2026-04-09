@@ -22,6 +22,24 @@ public class PlayerPowerUp : MonoBehaviour
         velocidadActual = velocidadBase;
     }
 
+    public void RecibirDanio(float cantidad)
+    {
+        vidaActual -= cantidad;
+
+        if (vidaActual <= 0)
+            Morir();
+    }
+
+    public void Curar(float cantidad)
+    {
+        vidaActual = Mathf.Clamp(vidaActual + cantidad, 0, vidaMax);
+    }
+
+    void Morir()
+    {
+        Debug.Log("Jugador muerto");
+    }
+
     // Update is called once per frame
     void Update()
     {
