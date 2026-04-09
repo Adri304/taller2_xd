@@ -50,3 +50,22 @@ public void ActivarEscudo(float duracion)
 {
     StartCoroutine(CorutinaEscudo(duracion));
 }
+
+IEnumerator CorutinaEscudo(float duracion)
+{
+    tieneEscudo = true;
+
+    yield return new WaitForSeconds(duracion);
+
+    tieneEscudo = false;
+}
+
+public void RecibirDanio(float cantidad)
+{
+    if (tieneEscudo) return;
+
+    vidaActual -= cantidad;
+
+    if (vidaActual <= 0)
+        Morir();
+}
