@@ -18,6 +18,10 @@ public class PlayerPowerUps : MonoBehaviour
     [Header("Temporizadores")]
     [SerializeField] private float tiempoEscudoRestante;
 
+    // Corrutinas activas (para evitar acumulación)
+    private Coroutine escudoCoroutine;
+    private Coroutine velocidadCoroutine;
+
     void Start()
     {
         vidaActual = vidaMax;
@@ -42,12 +46,18 @@ public class PlayerPowerUps : MonoBehaviour
             Debug.Log("Jugador muerto");
     }
 
-    
+   
     // ESCUDO
 
     public void ActivarEscudo(float duracion)
     {
-        StartCoroutine(CorutinaEscudo(duracion));
+        // Si ya hay escudo activo, lo reinicia
+        if (escudoCoroutine != null)
+        {
+            StopCoroutine(escudoCoroutine);
+        }
+
+        escudoCoroutine = StartCoroutine(CorutinaEscudo(duracion));
     }
 
     IEnumerator CorutinaEscudo(float duracion)
@@ -62,14 +72,22 @@ public class PlayerPowerUps : MonoBehaviour
         }
 
         tieneEscudo = false;
+        escudoCoroutine = null;
     }
 
-   
+    
     // VELOCIDAD
 
     public void ActivarVelocidad(float duracion, float bonus)
     {
-        StartCoroutine(CorutinaVelocidad(duracion, bonus));
+        // Reinicia si ya estaba activa
+        if (velocidadCoroutine != null)
+        {
+            StopCoroutine(velocidadCoroutine);
+            velocidadActual = velocidadBase; // reset previo
+        }
+
+        velocidadCoroutine = StartCoroutine(CorutinaVelocidad(duracion, bonus));
     }
 
     IEnumerator CorutinaVelocidad(float duracion, float bonus)
@@ -81,5 +99,6 @@ public class PlayerPowerUps : MonoBehaviour
 
         velocidadActual = velocidadBase;
         tieneBoostVelocidad = false;
+        velocidadCoroutine = null;
     }
 }
