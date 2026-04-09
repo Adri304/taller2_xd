@@ -44,3 +44,9 @@ void ActivarPowerUp(PowerUp power)
             break;
     }
 }
+
+
+public void ActivarEscudo(float duracion)
+{
+    StartCoroutine(CorutinaEscudo(duracion));
+}
