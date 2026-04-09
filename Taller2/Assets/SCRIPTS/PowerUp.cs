@@ -13,3 +13,16 @@ public class PowerUp : MonoBehaviour
     public float valor;
     public float duracion;
 }
+
+
+void OnTriggerEnter(Collider other)
+{
+    PowerUp power = other.GetComponent<PowerUp>();
+
+    if (power != null)
+    {
+        ActivarPowerUp(power);
+        Destroy(other.gameObject);
+    }
+}
+
