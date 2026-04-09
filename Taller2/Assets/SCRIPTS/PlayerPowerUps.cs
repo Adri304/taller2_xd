@@ -15,10 +15,11 @@ public class PlayerPowerUp : MonoBehaviour
     [SerializeField] private bool tieneEscudo;
     [SerializeField] private bool tieneBoostVelocidad;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
     {
-        
+        vidaActual = vidaMax;
+        velocidadActual = velocidadBase;
     }
 
     // Update is called once per frame
