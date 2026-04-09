@@ -1,8 +1,8 @@
 using UnityEngine;
+using System.Collections;
 
-public class PlayerPowerUp : MonoBehaviour
+public class PlayerPowerUps : MonoBehaviour
 {
-
     [Header("Vida")]
     [SerializeField] private float vidaMax = 100f;
     private float vidaActual;
@@ -15,34 +15,71 @@ public class PlayerPowerUp : MonoBehaviour
     [SerializeField] private bool tieneEscudo;
     [SerializeField] private bool tieneBoostVelocidad;
 
-    
+    [Header("Temporizadores")]
+    [SerializeField] private float tiempoEscudoRestante;
+
     void Start()
     {
         vidaActual = vidaMax;
         velocidadActual = velocidadBase;
     }
 
-    public void RecibirDanio(float cantidad)
-    {
-        vidaActual -= cantidad;
-
-        if (vidaActual <= 0)
-            Morir();
-    }
+    
+    // VIDA
 
     public void Curar(float cantidad)
     {
         vidaActual = Mathf.Clamp(vidaActual + cantidad, 0, vidaMax);
     }
 
-    void Morir()
+    public void RecibirDanio(float cantidad)
     {
-        Debug.Log("Jugador muerto");
+        if (tieneEscudo) return;
+
+        vidaActual -= cantidad;
+
+        if (vidaActual <= 0)
+            Debug.Log("Jugador muerto");
     }
 
-    // Update is called once per frame
-    void Update()
+    
+    // ESCUDO
+
+    public void ActivarEscudo(float duracion)
     {
-        
+        StartCoroutine(CorutinaEscudo(duracion));
+    }
+
+    IEnumerator CorutinaEscudo(float duracion)
+    {
+        tieneEscudo = true;
+        tiempoEscudoRestante = duracion;
+
+        while (tiempoEscudoRestante > 0)
+        {
+            tiempoEscudoRestante -= Time.deltaTime;
+            yield return null;
+        }
+
+        tieneEscudo = false;
+    }
+
+   
+    // VELOCIDAD
+
+    public void ActivarVelocidad(float duracion, float bonus)
+    {
+        StartCoroutine(CorutinaVelocidad(duracion, bonus));
+    }
+
+    IEnumerator CorutinaVelocidad(float duracion, float bonus)
+    {
+        tieneBoostVelocidad = true;
+        velocidadActual += bonus;
+
+        yield return new WaitForSeconds(duracion);
+
+        velocidadActual = velocidadBase;
+        tieneBoostVelocidad = false;
     }
 }
