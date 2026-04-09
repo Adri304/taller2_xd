@@ -46,6 +46,16 @@ void ActivarPowerUp(PowerUp power)
 }
 
 
+public float tiempoEscudoRestante;
+
+tiempoEscudoRestante = duracion;
+
+while (tiempoEscudoRestante > 0)
+{
+    tiempoEscudoRestante -= Time.deltaTime;
+    yield return null;
+}
+
 public void ActivarEscudo(float duracion)
 {
     StartCoroutine(CorutinaEscudo(duracion));
@@ -69,3 +79,21 @@ public void RecibirDanio(float cantidad)
     if (vidaActual <= 0)
         Morir();
 }
+
+
+public void ActivarVelocidad(float duracion, float bonus)
+{
+    StartCoroutine(CorutinaVelocidad(duracion, bonus));
+}
+
+IEnumerator CorutinaVelocidad(float duracion, float bonus)
+{
+    tieneBoostVelocidad = true;
+    velocidadActual += bonus;
+
+    yield return new WaitForSeconds(duracion);
+
+    velocidadActual = velocidadBase;
+    tieneBoostVelocidad = false;
+}
+
