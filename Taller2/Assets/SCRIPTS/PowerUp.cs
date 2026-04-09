@@ -26,3 +26,21 @@ void OnTriggerEnter(Collider other)
     }
 }
 
+
+void ActivarPowerUp(PowerUp power)
+{
+    switch (power.tipo)
+    {
+        case PowerUp.TipoPowerUp.Curacion:
+            Curar(power.valor);
+            break;
+
+        case PowerUp.TipoPowerUp.Escudo:
+            ActivarEscudo(power.duracion);
+            break;
+
+        case PowerUp.TipoPowerUp.Velocidad:
+            ActivarVelocidad(power.duracion, power.valor);
+            break;
+    }
+}
