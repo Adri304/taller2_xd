@@ -9634,7 +9634,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1031779067}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1433055470}
+        m_TargetAssemblyTypeName: PowerUpUI, Assembly-CSharp
+        m_MethodName: BotonAplicar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1031779067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20783,6 +20795,7 @@ GameObject:
   - component: {fileID: 1433055467}
   - component: {fileID: 1433055469}
   - component: {fileID: 1433055468}
+  - component: {fileID: 1433055470}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -20853,6 +20866,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433055466}
   m_CullTransparentMesh: 1
+--- !u!114 &1433055470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433055466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 205fdbc90837d7a4da4a2fd662b0642b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 1433055466}
+  inputValor: {fileID: 367016816}
 --- !u!1 &1439436977
 GameObject:
   m_ObjectHideFlags: 0
@@ -26841,7 +26868,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1722858255}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1433055470}
+        m_TargetAssemblyTypeName: PowerUpUI, Assembly-CSharp
+        m_MethodName: SeleccionarVelocidad
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1722858255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29593,7 +29632,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1948493813}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1433055470}
+        m_TargetAssemblyTypeName: PowerUpUI, Assembly-CSharp
+        m_MethodName: SeleccionarCuracion
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1948493813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31210,7 +31261,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2091927645}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1433055470}
+        m_TargetAssemblyTypeName: PowerUpUI, Assembly-CSharp
+        m_MethodName: SeleccionarEscudo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2091927645
 MonoBehaviour:
   m_ObjectHideFlags: 0
