@@ -8,8 +8,4 @@ public class PowerUp : MonoBehaviour
         Escudo,
         Velocidad
     }
-
-    public TipoPowerUp tipo;
-    public float valor;
-    public float duracion;
 }
