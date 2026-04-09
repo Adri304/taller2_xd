@@ -28,7 +28,8 @@ public class PlayerPowerUps : MonoBehaviour
         velocidadActual = velocidadBase;
     }
 
-    
+
+
     // VIDA
 
     public void Curar(float cantidad)
