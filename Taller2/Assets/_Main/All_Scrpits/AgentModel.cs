@@ -1,4 +1,4 @@
-using UnityEngine;  // Librer�a principal de Unity.
+using UnityEngine;  // Librería principal de Unity.
 
 public class PlayerMovementModel : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class PlayerMovementModel : MonoBehaviour
     public float CurrentSpeed { get; private set; }
 
     // NUEVO:
-    // Direcci�n actual del movimiento en el plano XZ.
+    // Dirección actual del movimiento en el plano XZ.
     // Esto lo usaremos para girar visualmente al personaje.
     public Vector3 CurrentMoveDirection { get; private set; }
 
@@ -45,7 +45,7 @@ public class PlayerMovementModel : MonoBehaviour
         // Mueve el rigidbody.
         Move();
 
-        // Actualiza velocidad y direcci�n real.
+        // Actualiza velocidad y dirección real.
         UpdateVelocityData();
     }
 
@@ -57,17 +57,17 @@ public class PlayerMovementModel : MonoBehaviour
         // Leemos el input actual.
         Vector2 input = playerInputController.MoveInput;
 
-        // Convertimos el input 2D a direcci�n 3D.
+        // Convertimos el input 2D a dirección 3D.
         Vector3 moveDirection = new Vector3(input.x, 0f, input.y);
 
         // Si la magnitud es mayor a 1, normalizamos
-        // para evitar que en diagonal se mueva m�s r�pido.
+        // para evitar que en diagonal se mueva más rápido.
         if (moveDirection.magnitude > 1f)
         {
             moveDirection.Normalize();
         }
 
-        // Guardamos la direcci�n actual solo si realmente hay input.
+        // Guardamos la dirección actual solo si realmente hay input.
         if (moveDirection != Vector3.zero)
         {
             CurrentMoveDirection = moveDirection;
@@ -86,7 +86,7 @@ public class PlayerMovementModel : MonoBehaviour
         // Debug de movimiento.
         if (moveDirection != Vector3.zero)
         {
-            Debug.Log($"[PlayerMovementModel] Direcci�n de movimiento: {CurrentMoveDirection}");
+            Debug.Log($"[PlayerMovementModel] Dirección de movimiento: {CurrentMoveDirection}");
             Debug.Log($"[PlayerMovementModel] Velocidad aplicada al Rigidbody: {rb.linearVelocity}");
         }
     }

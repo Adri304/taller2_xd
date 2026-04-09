@@ -2622,9 +2622,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09adbcadced4136478e08aeeae33dd34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInputController: {fileID: 0}
-  rb: {fileID: 0}
-  moveSpeed: 5
+  playerInputController: {fileID: 303233384}
+  rb: {fileID: 303233378}
+  moveSpeed: 20
 --- !u!114 &303233384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12256,7 +12256,7 @@ Transform:
   m_GameObject: {fileID: 1210492821}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.005718798, z: -0, w: -0.99998367}
-  m_LocalPosition: {x: 0.001, y: 1.7319, z: 0.228}
+  m_LocalPosition: {x: -0, y: 1.7319, z: 0.351}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []

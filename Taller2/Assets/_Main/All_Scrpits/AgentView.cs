@@ -1,8 +1,8 @@
-using UnityEngine;  // Librer�a principal de Unity.
+using UnityEngine;  // Librería principal de Unity.
 
 public class PlayerAnimatorView : MonoBehaviour
 {
-    // Enum para representar el estado l�gico actual de animaci�n.
+    // Enum para representar el estado lógico actual de animación.
     public enum AnimationState
     {
         Idle,
@@ -23,9 +23,9 @@ public class PlayerAnimatorView : MonoBehaviour
     // Puede ser el mismo personaje o el modelo hijo.
     [SerializeField] private Transform characterVisual;
 
-    [Header("Par�metro del Animator")]
+    [Header("Parámetro del Animator")]
 
-    // Nombre del par�metro float del Animator.
+    // Nombre del parámetro float del Animator.
     [SerializeField] private string speedParameter = "Speed";
 
     [Header("Umbrales")]
@@ -36,20 +36,20 @@ public class PlayerAnimatorView : MonoBehaviour
     // Umbral para considerar Run.
     [SerializeField] private float runThreshold = 4f;
 
-    [Header("Rotaci�n")]
+    [Header("Rotación")]
 
-    // Qu� tan r�pido gira el personaje.
+    // Qué tan rápido gira el personaje.
     [SerializeField] private float rotationSpeed = 10f;
 
     // Estado actual detectado.
     public AnimationState CurrentState { get; private set; }
 
-    // Hash del par�metro Speed.
+    // Hash del parámetro Speed.
     private int _speedHash;
 
     private void Start()
     {
-        // Convertimos el nombre del par�metro a hash.
+        // Convertimos el nombre del parámetro a hash.
         _speedHash = Animator.StringToHash(speedParameter);
 
         // Revisamos referencias.
@@ -68,15 +68,15 @@ public class PlayerAnimatorView : MonoBehaviour
             Debug.LogError("[PlayerAnimatorView] Falta asignar Character Visual en el Inspector.");
         }
 
-        Debug.Log($"[PlayerAnimatorView] Par�metro de Animator configurado: {speedParameter}");
+        Debug.Log($"[PlayerAnimatorView] Parámetro de Animator configurado: {speedParameter}");
     }
 
     private void Update()
     {
-        // Actualizamos animaci�n.
+        // Actualizamos animación.
         UpdateAnimation();
 
-        // Actualizamos rotaci�n visual.
+        // Actualizamos rotación visual.
         UpdateRotation();
     }
 
@@ -95,10 +95,10 @@ public class PlayerAnimatorView : MonoBehaviour
         if (speed > 0f)
         {
             Debug.Log($"[PlayerAnimatorView] Speed enviada al Animator: {speed}");
-            Debug.Log($"[PlayerAnimatorView] Speed le�da dentro del Animator: {animator.GetFloat(_speedHash)}");
+            Debug.Log($"[PlayerAnimatorView] Speed leída dentro del Animator: {animator.GetFloat(_speedHash)}");
         }
 
-        // Determinamos el estado l�gico actual.
+        // Determinamos el estado lógico actual.
         if (speed <= idleThreshold)
         {
             CurrentState = AnimationState.Idle;
@@ -124,23 +124,23 @@ public class PlayerAnimatorView : MonoBehaviour
         // Si falta una referencia, no seguimos.
         if (playerMovementModel == null || characterVisual == null) return;
 
-        // Tomamos la direcci�n actual del movimiento.
+        // Tomamos la dirección actual del movimiento.
         Vector3 moveDirection = playerMovementModel.CurrentMoveDirection;
 
-        // Si no hay direcci�n, no rotamos.
+        // Si no hay dirección, no rotamos.
         if (moveDirection == Vector3.zero) return;
 
-        // Calculamos la rotaci�n objetivo basada en la direcci�n.
+        // Calculamos la rotación objetivo basada en la dirección.
         Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
 
-        // Rotamos suavemente hacia la direcci�n deseada.
+        // Rotamos suavemente hacia la dirección deseada.
         characterVisual.rotation = Quaternion.Slerp(
             characterVisual.rotation,
             targetRotation,
             rotationSpeed * Time.deltaTime
         );
 
-        // Debug �til para confirmar rotaci�n.
+        // Debug útil para confirmar rotación.
         Debug.Log($"[PlayerAnimatorView] Rotando hacia: {moveDirection}");
     }
 }
