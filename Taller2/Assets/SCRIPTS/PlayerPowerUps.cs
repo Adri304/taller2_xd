@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 using System.Collections;
 
 public class PlayerPowerUps : MonoBehaviour
@@ -11,95 +12,126 @@ public class PlayerPowerUps : MonoBehaviour
     [SerializeField] private float velocidadBase = 5f;
     private float velocidadActual;
 
-    [Header("Estados")]
-    [SerializeField] private bool tieneEscudo;
-    [SerializeField] private bool tieneBoostVelocidad;
+    [Header("UI")]
+    [SerializeField] private TMP_Text textoVelocidad;
+    [SerializeField] private TMP_Text textoEscudo;
 
-    [Header("Temporizadores")]
-    [SerializeField] private float tiempoEscudoRestante;
+    private bool tieneEscudo;
+    private bool tieneVelocidad;
 
-    // Corrutinas activas (para evitar acumulación)
-    private Coroutine escudoCoroutine;
-    private Coroutine velocidadCoroutine;
+    // TIEMPOS ACUMULABLES
+    private float tiempoEscudo = 0f;
+    private float tiempoVelocidad = 0f;
 
     void Start()
     {
         vidaActual = vidaMax;
         velocidadActual = velocidadBase;
+
+        textoEscudo.text = "";
+        textoVelocidad.text = "";
     }
 
+    void Update()
+    {
+        ActualizarEscudo();
+        ActualizarVelocidad();
+    }
 
-
-    // VIDA
-
+    // CURACIÓN
     public void Curar(float cantidad)
     {
         vidaActual = Mathf.Clamp(vidaActual + cantidad, 0, vidaMax);
     }
 
-    public void RecibirDanio(float cantidad)
+    // ESCUDO (ACUMULABLE)
+    public void ActivarEscudo(float duracion)
+    {
+        tiempoEscudo += duracion;
+        tieneEscudo = true;
+    }
+
+    void ActualizarEscudo()
+    {
+        if (!tieneEscudo) return;
+
+        tiempoEscudo -= Time.deltaTime;
+
+        textoEscudo.text = "Escudo: " + Mathf.Ceil(tiempoEscudo) + "s";
+
+        // ALERTA últimos 5 segundos
+        if (tiempoEscudo <= 5f)
+        {
+            textoEscudo.color = Color.red;
+            textoEscudo.enabled = !textoEscudo.enabled;
+        }
+        else
+        {
+            textoEscudo.color = Color.white;
+            textoEscudo.enabled = true;
+        }
+
+        if (tiempoEscudo <= 0)
+        {
+            tieneEscudo = false;
+            textoEscudo.text = "";
+            textoEscudo.enabled = true;
+        }
+    }
+
+    // VELOCIDAD (ACUMULABLE)
+    public void ActivarVelocidad(float duracion, float bonus)
+    {
+        tiempoVelocidad += duracion;
+
+        if (!tieneVelocidad)
+        {
+            velocidadActual += bonus;
+            tieneVelocidad = true;
+        }
+    }
+
+    void ActualizarVelocidad()
+    {
+        if (!tieneVelocidad) return;
+
+        tiempoVelocidad -= Time.deltaTime;
+
+        textoVelocidad.text = "Velocidad: " + Mathf.Ceil(tiempoVelocidad) + "s";
+
+        // ALERTA últimos 5 segundos
+        if (tiempoVelocidad <= 5f)
+        {
+            textoVelocidad.color = Color.red;
+            textoVelocidad.enabled = !textoVelocidad.enabled;
+        }
+        else
+        {
+            textoVelocidad.color = Color.white;
+            textoVelocidad.enabled = true;
+        }
+
+        if (tiempoVelocidad <= 0)
+        {
+            tieneVelocidad = false;
+            velocidadActual = velocidadBase;
+
+            textoVelocidad.text = "";
+            textoVelocidad.enabled = true;
+        }
+    }
+
+    // Para movimiento
+    public float GetVelocidad()
+    {
+        return velocidadActual;
+    }
+
+    // DAÑO
+    public void RecibirDanio(float daño)
     {
         if (tieneEscudo) return;
 
-        vidaActual -= cantidad;
-
-        if (vidaActual <= 0)
-            Debug.Log("Jugador muerto");
-    }
-
-   
-    // ESCUDO
-
-    public void ActivarEscudo(float duracion)
-    {
-        // Si ya hay escudo activo, lo reinicia
-        if (escudoCoroutine != null)
-        {
-            StopCoroutine(escudoCoroutine);
-        }
-
-        escudoCoroutine = StartCoroutine(CorutinaEscudo(duracion));
-    }
-
-    IEnumerator CorutinaEscudo(float duracion)
-    {
-        tieneEscudo = true;
-        tiempoEscudoRestante = duracion;
-
-        while (tiempoEscudoRestante > 0)
-        {
-            tiempoEscudoRestante -= Time.deltaTime;
-            yield return null;
-        }
-
-        tieneEscudo = false;
-        escudoCoroutine = null;
-    }
-
-    
-    // VELOCIDAD
-
-    public void ActivarVelocidad(float duracion, float bonus)
-    {
-        // Reinicia si ya estaba activa
-        if (velocidadCoroutine != null)
-        {
-            StopCoroutine(velocidadCoroutine);
-            velocidadActual = velocidadBase; // reset previo
-        }
-
-        velocidadCoroutine = StartCoroutine(CorutinaVelocidad(duracion, bonus));
-    }
-
-    IEnumerator CorutinaVelocidad(float duracion, float bonus)
-    {
-        tieneBoostVelocidad = true;
-        velocidadActual += bonus;
-
-        yield return new WaitForSeconds(duracion);
-
-        velocidadActual = velocidadBase;
-        tieneBoostVelocidad = false;
-        velocidadCoroutine = null;
+        vidaActual -= daño;
     }
 }
