@@ -1,16 +1,38 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PlayerHealt : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public int vidaMaxima = 5;
+    public int vidaActual;
+
+    void Awake() // 🔥 IMPORTANTE (no Start)
     {
-        
+        vidaActual = vidaMaxima;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void recibirDaño(int cantidad)
     {
-        
+        vidaActual -= cantidad;
+
+        if (vidaActual <= 0)
+        {
+            vidaActual = 0;
+            morir();
+        }
+    }
+
+    public void curar(int cantidad)
+    {
+        vidaActual += cantidad;
+
+        if (vidaActual > vidaMaxima)
+        {
+            vidaActual = vidaMaxima;
+        }
+    }
+
+    void morir()
+    {
+        Debug.Log("Murió");
     }
 }
