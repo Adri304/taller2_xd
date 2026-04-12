@@ -16,10 +16,15 @@ public class PlayerPowerUps : MonoBehaviour
     [SerializeField] private TMP_Text textoVelocidad;
     [SerializeField] private TMP_Text textoEscudo;
 
+    [Header("Efectos Visuales")]
+    [SerializeField] private GameObject fxEscudo; // esfera
+    [SerializeField] private GameObject fxEscudoParticulas;
+    [SerializeField] private GameObject fxVelocidad;
+    [SerializeField] private GameObject fxCuracion;
+
     private bool tieneEscudo;
     private bool tieneVelocidad;
 
-    // TIEMPOS ACUMULABLES
     private float tiempoEscudo = 0f;
     private float tiempoVelocidad = 0f;
 
@@ -30,6 +35,12 @@ public class PlayerPowerUps : MonoBehaviour
 
         textoEscudo.text = "";
         textoVelocidad.text = "";
+
+        // Apagar efectos al inicio
+        fxEscudo.SetActive(false);
+        fxEscudoParticulas.SetActive(false);
+        fxVelocidad.SetActive(false);
+        fxCuracion.SetActive(false);
     }
 
     void Update()
@@ -42,12 +53,29 @@ public class PlayerPowerUps : MonoBehaviour
     public void Curar(float cantidad)
     {
         vidaActual = Mathf.Clamp(vidaActual + cantidad, 0, vidaMax);
+
+        // Activar efecto temporal
+        StartCoroutine(EfectoCuracion());
     }
 
-    // ESCUDO (ACUMULABLE)
+    IEnumerator EfectoCuracion()
+    {
+        fxCuracion.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        fxCuracion.SetActive(false);
+    }
+
+    // ESCUDO
     public void ActivarEscudo(float duracion)
     {
         tiempoEscudo += duracion;
+
+        if (!tieneEscudo)
+        {
+            fxEscudo.SetActive(true);
+            fxEscudoParticulas.SetActive(true);
+        }
+
         tieneEscudo = true;
     }
 
@@ -76,10 +104,13 @@ public class PlayerPowerUps : MonoBehaviour
             tieneEscudo = false;
             textoEscudo.text = "";
             textoEscudo.enabled = true;
+
+            fxEscudo.SetActive(false);
+            fxEscudoParticulas.SetActive(false);
         }
     }
 
-    // VELOCIDAD (ACUMULABLE)
+    // VELOCIDAD
     public void ActivarVelocidad(float duracion, float bonus)
     {
         tiempoVelocidad += duracion;
@@ -87,6 +118,7 @@ public class PlayerPowerUps : MonoBehaviour
         if (!tieneVelocidad)
         {
             velocidadActual += bonus;
+            fxVelocidad.SetActive(true);
             tieneVelocidad = true;
         }
     }
@@ -118,10 +150,12 @@ public class PlayerPowerUps : MonoBehaviour
 
             textoVelocidad.text = "";
             textoVelocidad.enabled = true;
+
+            fxVelocidad.SetActive(false);
         }
     }
 
-    // Para movimiento
+    // MOVIMIENTO
     public float GetVelocidad()
     {
         return velocidadActual;
