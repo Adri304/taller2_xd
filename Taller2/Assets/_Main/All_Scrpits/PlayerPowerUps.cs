@@ -1,13 +1,13 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using UnityEngine.SceneManagement; // 👈 NUEVO
+using UnityEngine.SceneManagement;
 
 public class PlayerPowerUps : MonoBehaviour
 {
     [Header("Vida")]
     [SerializeField] private float vidaInicial = 20f;
-    [SerializeField] private float vidaMax = 50f;
+    [SerializeField] private float vidaMax = 30f;
     private float vidaActual;
 
     [Header("Velocidad")]
@@ -56,7 +56,7 @@ public class PlayerPowerUps : MonoBehaviour
     private void ActualizarVidaUI()
     {
         if (textoVida != null)
-            textoVida.text = "Vida: " + Mathf.Ceil(vidaActual);
+            textoVida.text = "Vida: " + Mathf.Ceil(vidaActual) + " / " + vidaMax;
     }
 
     // CURACIÓN
@@ -109,14 +109,19 @@ public class PlayerPowerUps : MonoBehaviour
             textoEscudo.enabled = true;
         }
 
+        // 👇 ESCUDO TERMINA CORRECTAMENTE
         if (tiempoEscudo <= 0)
         {
+            tiempoEscudo = 0f;
             tieneEscudo = false;
+
             textoEscudo.text = "";
             textoEscudo.enabled = true;
 
             fxEscudo.SetActive(false);
             fxEscudoParticulas.SetActive(false);
+
+            Debug.Log("Escudo terminado");
         }
     }
 
@@ -171,13 +176,17 @@ public class PlayerPowerUps : MonoBehaviour
 
     public void RecibirDanio(float dano)
     {
-        if (tieneEscudo) return;
+        // 👇 BLOQUEO TOTAL DEL ESCUDO
+        if (tieneEscudo && tiempoEscudo > 0f)
+        {
+            Debug.Log("🛡️ Daño bloqueado por escudo");
+            return;
+        }
 
         vidaActual -= dano;
 
         ActualizarVidaUI();
 
-        // 👇 MUERTE
         if (vidaActual <= 0)
         {
             vidaActual = 0;
@@ -185,12 +194,11 @@ public class PlayerPowerUps : MonoBehaviour
         }
     }
 
-    // 💀 MUERTE + REINICIO
+    // 💀 MUERTE
     private void Muerte()
     {
         Debug.Log("Jugador murió");
-
-        Invoke(nameof(ReiniciarNivel), 1.5f); // pequeño delay
+        Invoke(nameof(ReiniciarNivel), 1.5f);
     }
 
     private void ReiniciarNivel()
