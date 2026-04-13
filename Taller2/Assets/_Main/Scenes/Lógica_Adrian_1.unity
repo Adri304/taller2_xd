@@ -8532,7 +8532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaInicial: 20
   vidaMax: 50
-  velocidadBase: 5
+  velocidadBase: 40
   textoVida: {fileID: 193476965}
   textoVelocidad: {fileID: 214715716}
   textoEscudo: {fileID: 576190236}
@@ -26651,7 +26651,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInputController: {fileID: 1199636148}
   rb: {fileID: 1199636147}
-  moveSpeed: 20
+  playerPowerUps: {fileID: 303233375}
+  moveSpeed: 40
 --- !u!1 &1210492821
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class PlayerPowerUps : MonoBehaviour
     private float vidaActual;
 
     [Header("Velocidad")]
-    [SerializeField] private float velocidadBase = 5f;
+    [SerializeField] private float velocidadBase = 30f;
     private float velocidadActual;
 
     [Header("UI")]
@@ -126,17 +126,17 @@ public class PlayerPowerUps : MonoBehaviour
     }
 
     // VELOCIDAD
-    public void ActivarVelocidad(float duracion, float bonus)
-    {
-        tiempoVelocidad += duracion;
+    public void ActivarVelocidad(float duracion, float multiplicador)
+{
+    tiempoVelocidad += duracion;
 
-        if (!tieneVelocidad)
-        {
-            velocidadActual += bonus;
-            fxVelocidad.SetActive(true);
-            tieneVelocidad = true;
-        }
+    if (!tieneVelocidad)
+    {
+        velocidadActual = velocidadBase * multiplicador; // 👈 x3 REAL
+        fxVelocidad.SetActive(true);
+        tieneVelocidad = true;
     }
+}
 
     void ActualizarVelocidad()
     {
