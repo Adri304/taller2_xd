@@ -1,11 +1,12 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement; // 👈 NUEVO
 
 public class PlayerPowerUps : MonoBehaviour
 {
     [Header("Vida")]
-    [SerializeField] private float vidaInicial = 20f; // 👈 NUEVO
+    [SerializeField] private float vidaInicial = 20f;
     [SerializeField] private float vidaMax = 50f;
     private float vidaActual;
 
@@ -32,13 +33,13 @@ public class PlayerPowerUps : MonoBehaviour
 
     void Start()
     {
-        vidaActual = vidaInicial; // 👈 CAMBIO CLAVE
+        vidaActual = vidaInicial;
         velocidadActual = velocidadBase;
 
         textoEscudo.text = "";
         textoVelocidad.text = "";
 
-        ActualizarVidaUI(); // 👈 mostrar 20 / 30
+        ActualizarVidaUI();
 
         fxEscudo.SetActive(false);
         fxEscudoParticulas.SetActive(false);
@@ -63,7 +64,7 @@ public class PlayerPowerUps : MonoBehaviour
     {
         vidaActual = Mathf.Clamp(vidaActual + cantidad, 0, vidaMax);
 
-        ActualizarVidaUI(); // 👈 actualiza UI
+        ActualizarVidaUI();
 
         StartCoroutine(EfectoCuracion());
     }
@@ -174,6 +175,26 @@ public class PlayerPowerUps : MonoBehaviour
 
         vidaActual -= dano;
 
-        ActualizarVidaUI(); // 👈 actualiza UI
+        ActualizarVidaUI();
+
+        // 👇 MUERTE
+        if (vidaActual <= 0)
+        {
+            vidaActual = 0;
+            Muerte();
+        }
+    }
+
+    // 💀 MUERTE + REINICIO
+    private void Muerte()
+    {
+        Debug.Log("Jugador murió");
+
+        Invoke(nameof(ReiniciarNivel), 1.5f); // pequeño delay
+    }
+
+    private void ReiniciarNivel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

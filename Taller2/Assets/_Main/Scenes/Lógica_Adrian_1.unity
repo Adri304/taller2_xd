@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &12835870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,7 +1660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &118170517
 GameObject:
   m_ObjectHideFlags: 0
@@ -8335,7 +8335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &238214190
 GameObject:
   m_ObjectHideFlags: 0
@@ -9546,7 +9546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &382771612
 Mesh:
   m_ObjectHideFlags: 0
@@ -10547,7 +10547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &464506610
 GameObject:
   m_ObjectHideFlags: 0
@@ -11053,7 +11053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &481863683
 Mesh:
   m_ObjectHideFlags: 0
@@ -11724,7 +11724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &552593666
 Mesh:
   m_ObjectHideFlags: 0
@@ -12883,7 +12883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &619284888
 GameObject:
   m_ObjectHideFlags: 0
@@ -13588,7 +13588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &675969369
 GameObject:
   m_ObjectHideFlags: 0
@@ -19257,7 +19257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &772146311
 GameObject:
   m_ObjectHideFlags: 0
@@ -19763,7 +19763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &788667590
 GameObject:
   m_ObjectHideFlags: 0
@@ -20088,7 +20088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &807949966
 Mesh:
   m_ObjectHideFlags: 0
@@ -21425,7 +21425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &949242644
 Mesh:
   m_ObjectHideFlags: 0
@@ -22096,7 +22096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1025303553
 GameObject:
   m_ObjectHideFlags: 0
@@ -24410,7 +24410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1173585981
 GameObject:
   m_ObjectHideFlags: 0
@@ -24916,7 +24916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1174189688
 GameObject:
   m_ObjectHideFlags: 0
@@ -25422,7 +25422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1174311278
 GameObject:
   m_ObjectHideFlags: 0
@@ -25928,7 +25928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1185948664
 GameObject:
   m_ObjectHideFlags: 0
@@ -27278,7 +27278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &1247816201
 Mesh:
   m_ObjectHideFlags: 0
@@ -30012,7 +30012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &1306438671
 Mesh:
   m_ObjectHideFlags: 0
@@ -30683,7 +30683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1342148349
 GameObject:
   m_ObjectHideFlags: 0
@@ -33598,7 +33598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &1376103954
 Mesh:
   m_ObjectHideFlags: 0
@@ -34088,7 +34088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1398457365
 GameObject:
   m_ObjectHideFlags: 0
@@ -34594,7 +34594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &1402265669
 Mesh:
   m_ObjectHideFlags: 0
@@ -36216,7 +36216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1506385531
 GameObject:
   m_ObjectHideFlags: 0
@@ -36844,7 +36844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1513356856
 GameObject:
   m_ObjectHideFlags: 0
@@ -37647,7 +37647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &1528772493
 Mesh:
   m_ObjectHideFlags: 0
@@ -38137,7 +38137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1542785945
 GameObject:
   m_ObjectHideFlags: 0
@@ -38982,7 +38982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &1610988878
 Mesh:
   m_ObjectHideFlags: 0
@@ -39653,7 +39653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &1637774458
 Mesh:
   m_ObjectHideFlags: 0
@@ -39856,11 +39856,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 1028849218}
 --- !u!33 &1668968448
@@ -40324,7 +40324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1672547208
 GameObject:
   m_ObjectHideFlags: 0
@@ -40830,7 +40830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1689299464
 GameObject:
   m_ObjectHideFlags: 0
@@ -41336,7 +41336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &1713134965
 Mesh:
   m_ObjectHideFlags: 0
@@ -47958,7 +47958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1829313321
 GameObject:
   m_ObjectHideFlags: 0
@@ -48464,7 +48464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &1842081403
 Mesh:
   m_ObjectHideFlags: 0
@@ -49135,7 +49135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &1881914282
 Mesh:
   m_ObjectHideFlags: 0
@@ -49806,7 +49806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1926265485
 GameObject:
   m_ObjectHideFlags: 0
@@ -50131,7 +50131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!43 &1935677313
 Mesh:
   m_ObjectHideFlags: 0
@@ -50621,7 +50621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1980513914
 GameObject:
   m_ObjectHideFlags: 0
@@ -50946,7 +50946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1 &1988089924
 GameObject:
   m_ObjectHideFlags: 0
@@ -52954,7 +52954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ebc3faad177adc4495bbe671393052e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "da\xF1o": 20
+  dano: 5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
