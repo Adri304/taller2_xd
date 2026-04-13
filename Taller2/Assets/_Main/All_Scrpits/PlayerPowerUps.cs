@@ -5,7 +5,8 @@ using System.Collections;
 public class PlayerPowerUps : MonoBehaviour
 {
     [Header("Vida")]
-    [SerializeField] private float vidaMax = 100f;
+    [SerializeField] private float vidaInicial = 20f; // ðŸ‘ˆ NUEVO
+    [SerializeField] private float vidaMax = 50f;
     private float vidaActual;
 
     [Header("Velocidad")]
@@ -13,11 +14,12 @@ public class PlayerPowerUps : MonoBehaviour
     private float velocidadActual;
 
     [Header("UI")]
+    [SerializeField] private TMP_Text textoVida;
     [SerializeField] private TMP_Text textoVelocidad;
     [SerializeField] private TMP_Text textoEscudo;
 
     [Header("Efectos Visuales")]
-    [SerializeField] private GameObject fxEscudo; // esfera
+    [SerializeField] private GameObject fxEscudo;
     [SerializeField] private GameObject fxEscudoParticulas;
     [SerializeField] private GameObject fxVelocidad;
     [SerializeField] private GameObject fxCuracion;
@@ -30,13 +32,14 @@ public class PlayerPowerUps : MonoBehaviour
 
     void Start()
     {
-        vidaActual = vidaMax;
+        vidaActual = vidaInicial; // ðŸ‘ˆ CAMBIO CLAVE
         velocidadActual = velocidadBase;
 
         textoEscudo.text = "";
         textoVelocidad.text = "";
 
-        // Apagar efectos al inicio
+        ActualizarVidaUI(); // ðŸ‘ˆ mostrar 20 / 30
+
         fxEscudo.SetActive(false);
         fxEscudoParticulas.SetActive(false);
         fxVelocidad.SetActive(false);
@@ -49,12 +52,19 @@ public class PlayerPowerUps : MonoBehaviour
         ActualizarVelocidad();
     }
 
-    // CURACIÓN
+    private void ActualizarVidaUI()
+    {
+        if (textoVida != null)
+            textoVida.text = "Vida: " + Mathf.Ceil(vidaActual);
+    }
+
+    // CURACIÃ“N
     public void Curar(float cantidad)
     {
         vidaActual = Mathf.Clamp(vidaActual + cantidad, 0, vidaMax);
 
-        // Activar efecto temporal
+        ActualizarVidaUI(); // ðŸ‘ˆ actualiza UI
+
         StartCoroutine(EfectoCuracion());
     }
 
@@ -87,7 +97,6 @@ public class PlayerPowerUps : MonoBehaviour
 
         textoEscudo.text = "Escudo: " + Mathf.Ceil(tiempoEscudo) + "s";
 
-        // ALERTA últimos 5 segundos
         if (tiempoEscudo <= 5f)
         {
             textoEscudo.color = Color.red;
@@ -131,7 +140,6 @@ public class PlayerPowerUps : MonoBehaviour
 
         textoVelocidad.text = "Velocidad: " + Mathf.Ceil(tiempoVelocidad) + "s";
 
-        // ALERTA últimos 5 segundos
         if (tiempoVelocidad <= 5f)
         {
             textoVelocidad.color = Color.red;
@@ -155,17 +163,17 @@ public class PlayerPowerUps : MonoBehaviour
         }
     }
 
-    // MOVIMIENTO
     public float GetVelocidad()
     {
         return velocidadActual;
     }
 
-    // DAÑO
-    public void RecibirDanio(float daño)
+    public void RecibirDanio(float dano)
     {
         if (tieneEscudo) return;
 
-        vidaActual -= daño;
+        vidaActual -= dano;
+
+        ActualizarVidaUI(); // ðŸ‘ˆ actualiza UI
     }
 }
