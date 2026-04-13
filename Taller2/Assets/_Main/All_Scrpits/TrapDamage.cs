@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class TrapDamage : MonoBehaviour
 {
-    [SerializeField] private float daño = 20f;
+    [SerializeField] private float dano = 5f;
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Algo tocÃ³ el pincho");
+
         PlayerPowerUps player = other.GetComponent<PlayerPowerUps>();
 
         if (player != null)
         {
-            player.RecibirDanio(daño);
+            Debug.Log("Es el jugador, aplicando daÃ±o");
+            player.RecibirDanio(dano);
         }
     }
 }
