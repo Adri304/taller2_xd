@@ -1,34 +1,41 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
+    [Header("UI")]
     [SerializeField] private TMP_Text textoPausa;
+
+    [Header("Botón")]
+    [SerializeField] private Button botonPausa;
+    [SerializeField] private TMP_Text textoBoton;
 
     private bool enPausa = false;
 
     void Start()
     {
-        Time.timeScale = 1f; // Asegura que el juego inicia normal
+        Time.timeScale = 1f;
         textoPausa.gameObject.SetActive(false);
+
+        ActualizarBoton();
     }
 
     void Update()
     {
-        // ESC para pausar y reanudar
+        // ESC para pausar / reanudar
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!enPausa)
-                Pausar();
-            else
-                Reanudar();
+            TogglePausa();
         }
+    }
 
-        // Cualquier tecla para continuar (EXCEPTO ESC)
-        if (enPausa && Input.anyKeyDown && !Input.GetKeyDown(KeyCode.Escape))
-        {
+    public void TogglePausa()
+    {
+        if (enPausa)
             Reanudar();
-        }
+        else
+            Pausar();
     }
 
     public void Pausar()
@@ -37,7 +44,9 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 0f;
 
         textoPausa.gameObject.SetActive(true);
-        textoPausa.text = "PAUSA\nPresiona cualquier tecla para continuar";
+        textoPausa.text = "PAUSA\nPRESIONA ESC O CUALQUIER BOTÓN PARA CONTINUAR";
+
+        ActualizarBoton();
     }
 
     public void Reanudar()
@@ -46,5 +55,29 @@ public class PauseManager : MonoBehaviour
         Time.timeScale = 1f;
 
         textoPausa.gameObject.SetActive(false);
+
+        ActualizarBoton();
+    }
+
+    void ActualizarBoton()
+    {
+        if (enPausa)
+        {
+            // AZUL MÁS VIVO
+            textoBoton.text = "<b>REANUDAR</b>";
+            textoBoton.fontSize = 50;
+
+            Color azul = new Color(0.2f, 0.6f, 1f); // más vivo
+            botonPausa.image.color = azul;
+        }
+        else
+        {
+            // NARANJA VIVO
+            textoBoton.text = "<b>PAUSAR</b>";
+            textoBoton.fontSize = 50;
+
+            Color naranja = new Color(1f, 0.4f, 0f); // más fuerte
+            botonPausa.image.color = naranja;
+        }
     }
 }
