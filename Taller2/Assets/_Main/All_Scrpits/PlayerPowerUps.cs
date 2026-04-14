@@ -25,6 +25,9 @@ public class PlayerPowerUps : MonoBehaviour
     [SerializeField] private GameObject fxVelocidad;
     [SerializeField] private GameObject fxCuracion;
 
+    // 🆕 CHECKPOINT
+    private Vector3 checkpointPosition;
+
     private bool tieneEscudo;
     private bool tieneVelocidad;
 
@@ -35,6 +38,9 @@ public class PlayerPowerUps : MonoBehaviour
     {
         vidaActual = vidaInicial;
         velocidadActual = velocidadBase;
+
+        // 🆕 Guardar posición inicial como primer checkpoint
+        checkpointPosition = transform.position;
 
         textoEscudo.text = "";
         textoVelocidad.text = "";
@@ -57,6 +63,13 @@ public class PlayerPowerUps : MonoBehaviour
     {
         if (textoVida != null)
             textoVida.text = "Vida: " + Mathf.Ceil(vidaActual) + " / " + vidaMax;
+    }
+
+    // 🆕 GUARDAR CHECKPOINT
+    public void SetCheckpoint(Vector3 nuevaPosicion)
+    {
+        checkpointPosition = nuevaPosicion;
+        Debug.Log("Checkpoint guardado en: " + checkpointPosition);
     }
 
     // CURACIÓN
@@ -109,7 +122,6 @@ public class PlayerPowerUps : MonoBehaviour
             textoEscudo.enabled = true;
         }
 
-        // ESCUDO TERMINA CORRECTAMENTE
         if (tiempoEscudo <= 0)
         {
             tiempoEscudo = 0f;
@@ -127,16 +139,16 @@ public class PlayerPowerUps : MonoBehaviour
 
     // VELOCIDAD
     public void ActivarVelocidad(float duracion, float multiplicador)
-{
-    tiempoVelocidad += duracion;
-
-    if (!tieneVelocidad)
     {
-        velocidadActual = velocidadBase * multiplicador; // x3 REAL
-        fxVelocidad.SetActive(true);
-        tieneVelocidad = true;
+        tiempoVelocidad += duracion;
+
+        if (!tieneVelocidad)
+        {
+            velocidadActual = velocidadBase * multiplicador;
+            fxVelocidad.SetActive(true);
+            tieneVelocidad = true;
+        }
     }
-}
 
     void ActualizarVelocidad()
     {
@@ -176,7 +188,6 @@ public class PlayerPowerUps : MonoBehaviour
 
     public void RecibirDanio(float dano)
     {
-        // BLOQUEO TOTAL DEL ESCUDO
         if (tieneEscudo && tiempoEscudo > 0f)
         {
             Debug.Log("Daño bloqueado por escudo");
@@ -194,15 +205,21 @@ public class PlayerPowerUps : MonoBehaviour
         }
     }
 
-    // MUERTE
+    // 💀 MUERTE → ahora usa checkpoint
     private void Muerte()
     {
         Debug.Log("Jugador murió");
-        Invoke(nameof(ReiniciarNivel), 1.5f);
+        Invoke(nameof(Respawn), 1.5f);
     }
 
-    private void ReiniciarNivel()
+    // 🆕 RESPAWN
+    private void Respawn()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        transform.position = checkpointPosition;
+        vidaActual = vidaInicial;
+
+        ActualizarVidaUI();
+
+        Debug.Log("Respawn en checkpoint");
     }
 }
