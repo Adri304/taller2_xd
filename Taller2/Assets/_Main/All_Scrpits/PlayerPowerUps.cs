@@ -103,7 +103,7 @@ public class PlayerPowerUps : MonoBehaviour
         tieneEscudo = true;
     }
 
-    void ActualizarEscudo()
+    void ActualizarEscudo()   //hacerlo en corrutina y velocidad de movimiento
     {
         if (!tieneEscudo) return;
 
