@@ -6,11 +6,18 @@ public class PlayerMovementModel : MonoBehaviour
     [SerializeField] private PlayerInputController playerInputController;
     [SerializeField] private Rigidbody rb;
 
-    // 👇 NUEVO
     [SerializeField] private PlayerPowerUps playerPowerUps;
 
     [Header("Movimiento")]
     [SerializeField] private float moveSpeed = 5f;
+
+    [Header("Salto")]
+    [SerializeField] private float jumpForce = 7f;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundDistance = 0.3f;
+    [SerializeField] private LayerMask groundLayer;
+
+    private bool isGrounded;
 
     public Vector3 CurrentHorizontalVelocity { get; private set; }
     public float CurrentSpeed { get; private set; }
@@ -27,8 +34,19 @@ public class PlayerMovementModel : MonoBehaviour
 
     private void FixedUpdate()
     {
+        CheckGround();   // 👈 nuevo
         Move();
+        Jump();          // 👈 nuevo
         UpdateVelocityData();
+    }
+
+    private void CheckGround()
+    {
+        isGrounded = Physics.CheckSphere(
+            groundCheck.position,
+            groundDistance,
+            groundLayer
+        );
     }
 
     private void Move()
@@ -45,7 +63,6 @@ public class PlayerMovementModel : MonoBehaviour
         if (moveDirection != Vector3.zero)
             CurrentMoveDirection = moveDirection;
 
-        // 👇 USAR VELOCIDAD DEL POWER-UP
         float speed = playerPowerUps != null ? playerPowerUps.GetVelocidad() : moveSpeed;
 
         Vector3 newVelocity = new Vector3(
@@ -55,6 +72,21 @@ public class PlayerMovementModel : MonoBehaviour
         );
 
         rb.linearVelocity = newVelocity;
+    }
+
+    private void Jump()
+    {
+        if (playerInputController == null || rb == null) return;
+
+        if (playerInputController.JumpPressed && isGrounded)
+        {
+            // Reinicia velocidad vertical para un salto limpio
+            rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
+
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+            Debug.Log("🦘 Salto ejecutado");
+        }
     }
 
     private void UpdateVelocityData()
