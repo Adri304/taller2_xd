@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TrapDamage : MonoBehaviour
 {
-    [SerializeField] private float dano = 5f;
+    [SerializeField] private float dano = 20f;
 
     private void OnTriggerEnter(Collider other)
     {

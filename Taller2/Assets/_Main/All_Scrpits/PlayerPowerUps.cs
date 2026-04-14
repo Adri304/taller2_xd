@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerPowerUps : MonoBehaviour
 {
     [Header("Vida")]
-    [SerializeField] private float vidaInicial = 20f;
-    [SerializeField] private float vidaMax = 30f;
+    [SerializeField] private float vidaInicial = 80f;
+    [SerializeField] private float vidaMax = 100f;
     private float vidaActual;
 
     [Header("Velocidad")]
@@ -109,7 +109,7 @@ public class PlayerPowerUps : MonoBehaviour
             textoEscudo.enabled = true;
         }
 
-        // 👇 ESCUDO TERMINA CORRECTAMENTE
+        // ESCUDO TERMINA CORRECTAMENTE
         if (tiempoEscudo <= 0)
         {
             tiempoEscudo = 0f;
@@ -132,7 +132,7 @@ public class PlayerPowerUps : MonoBehaviour
 
     if (!tieneVelocidad)
     {
-        velocidadActual = velocidadBase * multiplicador; // 👈 x3 REAL
+        velocidadActual = velocidadBase * multiplicador; // x3 REAL
         fxVelocidad.SetActive(true);
         tieneVelocidad = true;
     }
@@ -176,10 +176,10 @@ public class PlayerPowerUps : MonoBehaviour
 
     public void RecibirDanio(float dano)
     {
-        // 👇 BLOQUEO TOTAL DEL ESCUDO
+        // BLOQUEO TOTAL DEL ESCUDO
         if (tieneEscudo && tiempoEscudo > 0f)
         {
-            Debug.Log("🛡️ Daño bloqueado por escudo");
+            Debug.Log("Daño bloqueado por escudo");
             return;
         }
 
@@ -194,7 +194,7 @@ public class PlayerPowerUps : MonoBehaviour
         }
     }
 
-    // 💀 MUERTE
+    // MUERTE
     private void Muerte()
     {
         Debug.Log("Jugador murió");

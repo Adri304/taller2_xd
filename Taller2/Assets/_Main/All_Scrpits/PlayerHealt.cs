@@ -2,7 +2,7 @@
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int vidaMaxima = 5;
+    public int vidaMaxima = 100;
     public int vidaActual;
 
     void Awake() // 🔥 IMPORTANTE (no Start)
