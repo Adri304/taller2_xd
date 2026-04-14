@@ -1,19 +1,43 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TrapDamage : MonoBehaviour
 {
-    [SerializeField] private float dano = 20f;
+    [SerializeField] private float dano = 5f;
+    [SerializeField] private float intervalo = 2f; // 👈 cada 2 segundos
 
-    private void OnTriggerEnter(Collider other)
+    // Guarda el tiempo del último daño por jugador
+    private Dictionary<PlayerPowerUps, float> lastHitTime = new Dictionary<PlayerPowerUps, float>();
+
+    private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Algo tocó el pincho");
+        PlayerPowerUps player = other.GetComponentInParent<PlayerPowerUps>();
 
-        PlayerPowerUps player = other.GetComponent<PlayerPowerUps>();
+        if (player == null) return;
 
-        if (player != null)
+        // Si no existe en el diccionario, lo agregamos
+        if (!lastHitTime.ContainsKey(player))
         {
-            Debug.Log("Es el jugador, aplicando daño");
+            lastHitTime[player] = -intervalo;
+        }
+
+        // Verificamos si ya pasaron 2 segundos
+        if (Time.time >= lastHitTime[player] + intervalo)
+        {
             player.RecibirDanio(dano);
+            lastHitTime[player] = Time.time;
+
+            Debug.Log("💥 Daño aplicado con intervalo");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        PlayerPowerUps player = other.GetComponentInParent<PlayerPowerUps>();
+
+        if (player != null && lastHitTime.ContainsKey(player))
+        {
+            lastHitTime.Remove(player); // limpiamos al salir
         }
     }
 }
