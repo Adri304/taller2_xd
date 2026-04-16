@@ -25,21 +25,20 @@ public class PlayerPowerUps : MonoBehaviour
     [SerializeField] private GameObject fxVelocidad;
     [SerializeField] private GameObject fxCuracion;
 
-    // 🆕 CHECKPOINT
     private Vector3 checkpointPosition;
 
     private bool tieneEscudo;
     private bool tieneVelocidad;
 
-    private float tiempoEscudo = 0f;
-    private float tiempoVelocidad = 0f;
+    // 🔥 CORRUTINAS ACTIVAS
+    private Coroutine escudoCoroutine;
+    private Coroutine velocidadCoroutine;
 
     void Start()
     {
         vidaActual = vidaInicial;
         velocidadActual = velocidadBase;
 
-        // 🆕 Guardar posición inicial como primer checkpoint
         checkpointPosition = transform.position;
 
         textoEscudo.text = "";
@@ -53,32 +52,24 @@ public class PlayerPowerUps : MonoBehaviour
         fxCuracion.SetActive(false);
     }
 
-    void Update()
-    {
-        ActualizarEscudo();
-        ActualizarVelocidad();
-    }
-
     private void ActualizarVidaUI()
     {
         if (textoVida != null)
             textoVida.text = "Vida: " + Mathf.Ceil(vidaActual) + " / " + vidaMax;
     }
 
-    // 🆕 GUARDAR CHECKPOINT
     public void SetCheckpoint(Vector3 nuevaPosicion)
     {
         checkpointPosition = nuevaPosicion;
-        Debug.Log("Checkpoint guardado en: " + checkpointPosition);
     }
 
+    // =========================
     // CURACIÓN
+    // =========================
     public void Curar(float cantidad)
     {
         vidaActual = Mathf.Clamp(vidaActual + cantidad, 0, vidaMax);
-
         ActualizarVidaUI();
-
         StartCoroutine(EfectoCuracion());
     }
 
@@ -89,98 +80,112 @@ public class PlayerPowerUps : MonoBehaviour
         fxCuracion.SetActive(false);
     }
 
-    // ESCUDO
+    // =========================
+    // ESCUDO (CORRUTINA)
+    // =========================
     public void ActivarEscudo(float duracion)
     {
-        tiempoEscudo += duracion;
+        if (escudoCoroutine != null)
+            StopCoroutine(escudoCoroutine);
 
-        if (!tieneEscudo)
-        {
-            fxEscudo.SetActive(true);
-            fxEscudoParticulas.SetActive(true);
-        }
-
-        tieneEscudo = true;
+        escudoCoroutine = StartCoroutine(EscudoCoroutine(duracion));
     }
 
-    void ActualizarEscudo()   //hacerlo en corrutina y velocidad de movimiento
+    IEnumerator EscudoCoroutine(float duracion)
     {
-        if (!tieneEscudo) return;
+        tieneEscudo = true;
 
-        tiempoEscudo -= Time.deltaTime;
+        fxEscudo.SetActive(true);
+        fxEscudoParticulas.SetActive(true);
 
-        textoEscudo.text = "Escudo: " + Mathf.Ceil(tiempoEscudo) + "s";
+        float tiempo = duracion;
 
-        if (tiempoEscudo <= 5f)
+        while (tiempo > 0f)
         {
-            textoEscudo.color = Color.red;
-            textoEscudo.enabled = !textoEscudo.enabled;
+            tiempo -= Time.deltaTime;
+
+            textoEscudo.text = "Escudo: " + Mathf.Ceil(tiempo) + "s";
+
+            if (tiempo <= 5f)
+            {
+                textoEscudo.color = Color.red;
+                textoEscudo.enabled = !textoEscudo.enabled;
+            }
+            else
+            {
+                textoEscudo.color = Color.white;
+                textoEscudo.enabled = true;
+            }
+
+            yield return null;
         }
-        else
-        {
-            textoEscudo.color = Color.white;
-            textoEscudo.enabled = true;
-        }
 
-        if (tiempoEscudo <= 0)
-        {
-            tiempoEscudo = 0f;
-            tieneEscudo = false;
+        // FIN
+        tieneEscudo = false;
 
-            textoEscudo.text = "";
-            textoEscudo.enabled = true;
+        textoEscudo.text = "";
+        textoEscudo.enabled = true;
 
-            fxEscudo.SetActive(false);
-            fxEscudoParticulas.SetActive(false);
+        fxEscudo.SetActive(false);
+        fxEscudoParticulas.SetActive(false);
 
-            Debug.Log("Escudo terminado");
-        }
+        Debug.Log("Escudo terminado");
     }
 
-    // VELOCIDAD
+    // =========================
+    // VELOCIDAD (CORRUTINA)
+    // =========================
     public void ActivarVelocidad(float duracion, float multiplicador)
     {
-        tiempoVelocidad += duracion;
+        if (velocidadCoroutine != null)
+            StopCoroutine(velocidadCoroutine);
 
-        if (!tieneVelocidad)
-        {
-            velocidadActual = velocidadBase * multiplicador;
-            fxVelocidad.SetActive(true);
-            tieneVelocidad = true;
-        }
+        velocidadCoroutine = StartCoroutine(VelocidadCoroutine(duracion, multiplicador));
     }
 
-    void ActualizarVelocidad()
+    IEnumerator VelocidadCoroutine(float duracion, float multiplicador)
     {
-        if (!tieneVelocidad) return;
+        tieneVelocidad = true;
 
-        tiempoVelocidad -= Time.deltaTime;
+        velocidadActual = velocidadBase * multiplicador;
+        fxVelocidad.SetActive(true);
 
-        textoVelocidad.text = "Velocidad: " + Mathf.Ceil(tiempoVelocidad) + "s";
+        float tiempo = duracion;
 
-        if (tiempoVelocidad <= 5f)
+        while (tiempo > 0f)
         {
-            textoVelocidad.color = Color.red;
-            textoVelocidad.enabled = !textoVelocidad.enabled;
-        }
-        else
-        {
-            textoVelocidad.color = Color.white;
-            textoVelocidad.enabled = true;
+            tiempo -= Time.deltaTime;
+
+            textoVelocidad.text = "Velocidad: " + Mathf.Ceil(tiempo) + "s";
+
+            if (tiempo <= 5f)
+            {
+                textoVelocidad.color = Color.red;
+                textoVelocidad.enabled = !textoVelocidad.enabled;
+            }
+            else
+            {
+                textoVelocidad.color = Color.white;
+                textoVelocidad.enabled = true;
+            }
+
+            yield return null;
         }
 
-        if (tiempoVelocidad <= 0)
-        {
-            tieneVelocidad = false;
-            velocidadActual = velocidadBase;
+        // FIN
+        tieneVelocidad = false;
 
-            textoVelocidad.text = "";
-            textoVelocidad.enabled = true;
+        velocidadActual = velocidadBase;
 
-            fxVelocidad.SetActive(false);
-        }
+        textoVelocidad.text = "";
+        textoVelocidad.enabled = true;
+
+        fxVelocidad.SetActive(false);
+
+        Debug.Log("Velocidad terminada");
     }
 
+    // =========================
     public float GetVelocidad()
     {
         return velocidadActual;
@@ -188,14 +193,13 @@ public class PlayerPowerUps : MonoBehaviour
 
     public void RecibirDanio(float dano)
     {
-        if (tieneEscudo && tiempoEscudo > 0f)
+        if (tieneEscudo)
         {
             Debug.Log("Daño bloqueado por escudo");
             return;
         }
 
         vidaActual -= dano;
-
         ActualizarVidaUI();
 
         if (vidaActual <= 0)
@@ -205,21 +209,16 @@ public class PlayerPowerUps : MonoBehaviour
         }
     }
 
-    // 💀 MUERTE → ahora usa checkpoint
+    // =========================
     private void Muerte()
     {
-        Debug.Log("Jugador murió");
         Invoke(nameof(Respawn), 1.5f);
     }
 
-    // 🆕 RESPAWN
     private void Respawn()
     {
         transform.position = checkpointPosition;
         vidaActual = vidaInicial;
-
         ActualizarVidaUI();
-
-        Debug.Log("Respawn en checkpoint");
     }
 }
