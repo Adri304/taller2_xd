@@ -14978,6 +14978,12 @@ MonoBehaviour:
   rb: {fileID: 6604367887637538131}
   playerPowerUps: {fileID: 8446373493874160617}
   moveSpeed: 40
+  jumpForce: 7
+  groundCheck: {fileID: 0}
+  groundDistance: 0.3
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1837127142662487091
 MonoBehaviour:
   m_ObjectHideFlags: 0
