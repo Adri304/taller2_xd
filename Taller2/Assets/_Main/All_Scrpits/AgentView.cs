@@ -7,7 +7,8 @@ public class PlayerAnimatorView : MonoBehaviour
     {
         Idle,
         Walk,
-        Run
+        Run,
+        Jump
     }
 
     [Header("Referencias")]
@@ -46,11 +47,13 @@ public class PlayerAnimatorView : MonoBehaviour
 
     // Hash del parámetro Speed.
     private int _speedHash;
+    private int _isGroundedHash;
 
     private void Start()
     {
         // Convertimos el nombre del parámetro a hash.
         _speedHash = Animator.StringToHash(speedParameter);
+        _isGroundedHash = Animator.StringToHash("IsGrounded");
 
         // Revisamos referencias.
         if (playerMovementModel == null)
@@ -82,24 +85,21 @@ public class PlayerAnimatorView : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        // Si falta algo, salimos.
         if (playerMovementModel == null || animator == null) return;
 
-        // Tomamos la velocidad actual desde el modelo.
         float speed = playerMovementModel.CurrentSpeed;
+        bool isGrounded = playerMovementModel.IsGrounded;
 
-        // La enviamos al Animator.
+        // Enviar parámetros al Animator
         animator.SetFloat(_speedHash, speed);
+        animator.SetBool(_isGroundedHash, isGrounded);
 
-        // Debug de Animator.
-        if (speed > 0f)
+        // PRIORIDAD: salto primero
+        if (!isGrounded)
         {
-            Debug.Log($"[PlayerAnimatorView] Speed enviada al Animator: {speed}");
-            Debug.Log($"[PlayerAnimatorView] Speed leída dentro del Animator: {animator.GetFloat(_speedHash)}");
+            CurrentState = AnimationState.Jump;
         }
-
-        // Determinamos el estado lógico actual.
-        if (speed <= idleThreshold)
+        else if (speed <= idleThreshold)
         {
             CurrentState = AnimationState.Idle;
         }
@@ -112,12 +112,8 @@ public class PlayerAnimatorView : MonoBehaviour
             CurrentState = AnimationState.Run;
         }
 
-        // Debug del estado.
-        if (speed > 0f)
-        {
-            Debug.Log($"[PlayerAnimatorView] Estado actual detectado: {CurrentState}");
-        }
-    }
+        Debug.Log($"[PlayerAnimatorView] Estado actual: {CurrentState} | Grounded: {isGrounded}");
+    }  
 
     private void UpdateRotation()
     {

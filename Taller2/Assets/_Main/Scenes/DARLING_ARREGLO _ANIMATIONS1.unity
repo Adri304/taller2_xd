@@ -42051,6 +42051,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025303553}
   m_CullTransparentMesh: 1
+--- !u!1 &1049468741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3474186967524566285, guid: e6d275061848f714089b66fbed49e88c, type: 3}
+  m_PrefabInstance: {fileID: 1879120430}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1049468747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049468741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b5d7c088409d9a40b7b09aa707777f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetOffset: {x: 0, y: 0, z: 0}
+  TrackerSettings:
+    BindingMode: 4
+    PositionDamping: {x: 1, y: 1, z: 1}
+    AngularDampingMode: 0
+    RotationDamping: {x: 1, y: 1, z: 1}
+    QuaternionDamping: 1
+  OrbitStyle: 0
+  Radius: 5
+  Orbits:
+    Top:
+      Radius: 2
+      Height: 5
+    Center:
+      Radius: 4
+      Height: 2.25
+    Bottom:
+      Radius: 2.5
+      Height: 0.1
+    SplineCurvature: 0.5
+  RecenteringTarget: 2
+  HorizontalAxis:
+    Value: 0
+    Center: 0
+    Range: {x: -180, y: 180}
+    Wrap: 1
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
+  VerticalAxis:
+    Value: 17.5
+    Center: 17.5
+    Range: {x: -10, y: 45}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
+  RadialAxis:
+    Value: 1
+    Center: 1
+    Range: {x: 1, y: 1}
+    Wrap: 0
+    Recentering:
+      Enabled: 0
+      Wait: 1
+      Time: 2
+    Restrictions: 0
 --- !u!1 &1050535023
 GameObject:
   m_ObjectHideFlags: 0
@@ -68829,6 +68897,22 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7661504228968242555, guid: e6d275061848f714089b66fbed49e88c, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661504228968242555, guid: e6d275061848f714089b66fbed49e88c, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[0].Owner
+      value: 
+      objectReference: {fileID: 1049468747}
+    - target: {fileID: 7661504228968242555, guid: e6d275061848f714089b66fbed49e88c, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[1].Owner
+      value: 
+      objectReference: {fileID: 1049468747}
+    - target: {fileID: 7661504228968242555, guid: e6d275061848f714089b66fbed49e88c, type: 3}
+      propertyPath: m_ControllerManager.Controllers.Array.data[2].Owner
+      value: 
+      objectReference: {fileID: 1049468747}
     - target: {fileID: 8446373493874160617, guid: e6d275061848f714089b66fbed49e88c, type: 3}
       propertyPath: vidaMax
       value: 100
@@ -68861,7 +68945,8 @@ PrefabInstance:
       propertyPath: near clip plane
       value: 2.18
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7576844607378125339, guid: e6d275061848f714089b66fbed49e88c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4689053703439503513, guid: e6d275061848f714089b66fbed49e88c, type: 3}
@@ -68874,6 +68959,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2481214181813791787, guid: e6d275061848f714089b66fbed49e88c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1975324364}
+    - targetCorrespondingSourceObject: {fileID: 3474186967524566285, guid: e6d275061848f714089b66fbed49e88c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1049468747}
   m_SourcePrefab: {fileID: 100100000, guid: e6d275061848f714089b66fbed49e88c, type: 3}
 --- !u!43 &1897006293
 Mesh:

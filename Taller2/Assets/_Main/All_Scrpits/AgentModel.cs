@@ -18,6 +18,7 @@ public class PlayerMovementModel : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     private bool isGrounded;
+    public bool IsGrounded => isGrounded;
 
     public Vector3 CurrentHorizontalVelocity { get; private set; }
     public float CurrentSpeed { get; private set; }
@@ -45,7 +46,8 @@ public class PlayerMovementModel : MonoBehaviour
         isGrounded = Physics.CheckSphere(
             groundCheck.position,
             groundDistance,
-            groundLayer
+            groundLayer,
+            QueryTriggerInteraction.Ignore
         );
     }
 
