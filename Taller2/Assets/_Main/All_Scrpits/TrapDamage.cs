@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public class TrapDamage : MonoBehaviour
 {
-    [SerializeField] private float dano = 5f;
+    [SerializeField] private float dano = 20f;
     [SerializeField] private float intervalo = 2f; // 👈 cada 2 segundos
 
     // Guarda el tiempo del último daño por jugador

@@ -20,7 +20,7 @@ public class PowerUp : MonoBehaviour
             switch (tipo)
             {
                 case TipoPowerUp.Curacion:
-                    player.Curar(3f);
+                    player.Curar(20f);
                     break;
 
                 case TipoPowerUp.Escudo:
