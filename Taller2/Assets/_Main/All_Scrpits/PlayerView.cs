@@ -7,7 +7,6 @@ public class PlayerInputController : MonoBehaviour
 
     public Vector2 MoveInput { get; private set; }
 
-    // 👇 NUEVO
     public bool JumpPressed { get; private set; }
 
     private void Start()
